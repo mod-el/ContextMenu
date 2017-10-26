@@ -185,7 +185,7 @@ function checkZkMenu(){
 			continue;
 		if(elements[i].getAttribute('data-set-context-menu'))
 			continue;
-		var menu = JSON.parse(elements[i].getAttribute('data-context-menu'));
+		eval('var menu = '+elements[i].getAttribute('data-context-menu')+';');
 		elements[i].contextMenu(menu);
 		elements[i].setAttribute('data-set-context-menu', '1');
 	}
