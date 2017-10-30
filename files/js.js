@@ -1,7 +1,7 @@
 var contextMenuSelected = null;
 
-Element.prototype.contextMenu = function(menu){
-	this.oncontextmenu = function(event){
+Element.prototype.ctxMenu = function(menu){
+	this.addEventListener('contextmenu', function(event){
 		event.preventDefault();
 		contextMenuSelected = null;
 
@@ -83,7 +83,7 @@ Element.prototype.contextMenu = function(menu){
 		contextMenu.style.opacity = 1;
 
 		return false;
-	}
+	});
 };
 
 function contextMenuMoveSelection(dir){
@@ -186,7 +186,7 @@ function checkZkMenu(){
 		if(elements[i].getAttribute('data-set-context-menu'))
 			continue;
 		eval('var menu = '+elements[i].getAttribute('data-context-menu')+';');
-		elements[i].contextMenu(menu);
+		elements[i].ctxMenu(menu);
 		elements[i].setAttribute('data-set-context-menu', '1');
 	}
 }
