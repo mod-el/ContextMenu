@@ -149,15 +149,7 @@ window.addEventListener('scroll', function(){
 });
 
 window.addEventListener('load', function(){
-	checkZkMenu();
-
-	if (typeof MutationObserver !== 'undefined') {
-		var observer = new MutationObserver(function (mutations) {
-			checkZkMenu();
-		});
-
-		observer.observe(document.body, {"childList": true, "subtree": true});
-	}
+	observeMutations(checkZkMenu);
 });
 
 document.addEventListener('mousedown', function(event){
@@ -179,14 +171,18 @@ function removeContextMenu(){
 }
 
 function checkZkMenu(){
-	var elements = document.querySelectorAll('[data-context-menu]');
-	for(var i in elements){
-		if(!elements.hasOwnProperty(i))
-			continue;
-		if(elements[i].getAttribute('data-set-context-menu'))
-			continue;
-		eval('var menu = '+elements[i].getAttribute('data-context-menu')+';');
-		elements[i].ctxMenu(menu);
-		elements[i].setAttribute('data-set-context-menu', '1');
-	}
+	return new Promise(function(resolve){
+		var elements = document.querySelectorAll('[data-context-menu]');
+		for(var i in elements){
+			if(!elements.hasOwnProperty(i))
+				continue;
+			if(elements[i].getAttribute('data-set-context-menu'))
+				continue;
+			eval('var menu = '+elements[i].getAttribute('data-context-menu')+';');
+			elements[i].ctxMenu(menu);
+			elements[i].setAttribute('data-set-context-menu', '1');
+		}
+
+		resolve();
+	});
 }
