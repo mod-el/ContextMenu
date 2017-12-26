@@ -10,5 +10,6 @@
 	],
 	"css": [
 		"files/style.css"
-	]
+	],
+	"assets-position": "foot"
 }
