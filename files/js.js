@@ -149,7 +149,7 @@ window.addEventListener('scroll', function(){
 });
 
 window.addEventListener('load', function(){
-	observeMutations(checkZkMenu);
+	onHtmlChange(checkZkMenu);
 });
 
 document.addEventListener('mousedown', function(event){
