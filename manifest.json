@@ -1,15 +1,11 @@
 {
 	"name": "ContextMenu",
 	"description": "A nice context menu you can append wherever you like",
-	"version": "1.1.0",
+	"version": "1.2.0",
 	"dependencies": {
-		"FrontEnd": ">=1.1.0"
+		"FrontEnd": ">=1.2.0"
 	},
-	"js": [
-		"files/js.js"
-	],
-	"css": [
-		"files/style.css"
-	],
-	"assets-position": "foot"
+	"assets-position": "foot",
+	"defer-js": true,
+	"defer-css": true
 }
